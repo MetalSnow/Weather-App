@@ -3,12 +3,13 @@ import sunnyIcon from '../icons/sun.png';
 import rainingIcon from '../icons/raining.png';
 import cloudyIcon from '../icons/cloudy.png';
 
-export { searchButton, locationInput, displayWeatherData };
+export { searchButton, locationInput, displayWeatherData, gifLoading, main };
 
 const main = document.querySelector('main');
 const searchButton = document.querySelector('#search-btn');
 const locationInput = document.querySelector('#locationInput');
 const weatherContainer = document.createElement('div');
+const gifLoading = document.createElement('img');
 
 weatherContainer.classList.add('weather-container');
 
