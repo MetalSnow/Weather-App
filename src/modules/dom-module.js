@@ -5,12 +5,18 @@ import cloudyIcon from '../icons/cloudy.png';
 
 export { searchButton, locationInput, displayWeatherData };
 
+const main = document.querySelector('main');
 const searchButton = document.querySelector('#search-btn');
 const locationInput = document.querySelector('#locationInput');
-const weatherContainer = document.querySelector('.weather-container');
+const weatherContainer = document.createElement('div');
+
+weatherContainer.classList.add('weather-container');
 
 async function displayWeatherData(data) {
   //remove container content
+  while (main.firstChild) {
+    main.removeChild(main.firstChild);
+  }
   while (weatherContainer.firstChild) {
     weatherContainer.removeChild(weatherContainer.firstChild);
   }
@@ -24,11 +30,14 @@ async function displayWeatherData(data) {
 
   if (data.precip_mm > 0) {
     conditionIcon.src = rainingIcon;
+    weatherContainer.style.backgroundColor = '#374151';
   } else {
     if (data.cloud === 0) {
       conditionIcon.src = sunnyIcon;
+      weatherContainer.style.backgroundColor = '#a8861a';
     } else if (data.cloud > 0) {
       conditionIcon.src = cloudyIcon;
+      weatherContainer.style.backgroundColor = '#52525b';
     }
   }
 
@@ -38,11 +47,15 @@ async function displayWeatherData(data) {
   feelsLike.textContent = `Feels Like: ${data.feelsLike}°C`;
   humidity.textContent = `Humidity: ${data.humidity}%`;
 
-  const img = document.querySelector('.gif-weather');
+  const img = document.createElement('img');
   const gifUrl = await generateGif(data.weatherCondition);
+
+  img.className = 'gif-weather';
   img.src = gifUrl;
 
-  condition.appendChild(conditionIcon);
+  weatherContainer.classList.add('active');
+
+  condition.insertBefore(conditionIcon, condition.firstChild);
 
   weatherContainer.append(
     locationName,
@@ -51,4 +64,5 @@ async function displayWeatherData(data) {
     feelsLike,
     humidity
   );
+  main.append(weatherContainer, img);
 }

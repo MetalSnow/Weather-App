@@ -9,6 +9,7 @@ export default async function getWeatherData(location) {
     );
 
     if (!response.ok) {
+      alert('Location Not Found!');
       throw new Error(`Status: ${response.status} Location Not Found!`);
     }
 
