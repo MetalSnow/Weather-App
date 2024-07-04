@@ -47,6 +47,10 @@ a {
   color: #5c487a;
 }
 
+a:hover {
+  color: #c26060;
+}
+
 ul {
   display: flex;
   gap: 18px;
@@ -122,6 +126,12 @@ main {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.weather-container:hover {
+  padding: 35px;
+  font-size: 22px;
 }
 
 .weather-container h3 {
@@ -135,6 +145,7 @@ main {
   width: 34%;
   border-radius: 10px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
 }
 
 p {

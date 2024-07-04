@@ -27,6 +27,7 @@ async function displayWeatherData(data) {
   const temperature = document.createElement('p');
   const feelsLike = document.createElement('p');
   const humidity = document.createElement('p');
+  const wind = document.createElement('p');
   const conditionIcon = document.createElement('img');
 
   if (data.precip_mm > 0) {
@@ -44,9 +45,10 @@ async function displayWeatherData(data) {
 
   locationName.textContent = `City: ${data.location}`;
   condition.textContent = data.weatherCondition;
-  temperature.textContent = `Temperature: ${data.temperature}°C`;
-  feelsLike.textContent = `Feels Like: ${data.feelsLike}°C`;
+  temperature.textContent = `Temperature: ${data.temperatureC}°C (${data.temperatureF}°F)`;
+  feelsLike.textContent = `Feels Like: ${data.feelsLikeC}°C (${data.feelsLikeF}°F)`;
   humidity.textContent = `Humidity: ${data.humidity}%`;
+  wind.textContent = `Wind: ${data.wind}km/h`;
 
   const img = document.createElement('img');
   const gifUrl = await generateGif(data.weatherCondition);
@@ -63,7 +65,8 @@ async function displayWeatherData(data) {
     condition,
     temperature,
     feelsLike,
-    humidity
+    humidity,
+    wind
   );
   main.append(weatherContainer, img);
 }
