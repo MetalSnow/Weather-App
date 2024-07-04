@@ -14,7 +14,7 @@ export default async function getWeatherData(location) {
     }
 
     const processData = await processDataJSON(response);
-    console.log(processData);
+
     displayWeatherData(processData);
   } catch (error) {
     console.log(error);
